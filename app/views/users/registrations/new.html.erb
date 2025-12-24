@@ -1,0 +1,66 @@
+<section class="min-h-screen flex items-center justify-center px-4"
+         style="background-color:#f5333f;">
+  <div class="w-full max-w-md bg-white rounded-2xl shadow-xl p-8">
+
+    <h2 class="text-2xl font-semibold text-gray-800 text-center mb-6">
+      Sign up
+    </h2>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+      <!-- Errors -->
+      <div class="mb-4">
+        <%= render "users/shared/error_messages", resource: resource %>
+      </div>
+
+      <!-- Email -->
+      <div class="mb-4">
+        <%= f.label :email, class: "block text-sm font-medium text-gray-700 mb-1" %>
+        <%= f.email_field :email,
+              autocomplete: "email",
+              class: "w-full rounded-lg border border-gray-300 px-3 py-2 text-sm
+                      focus:border-red-500 focus:ring-red-500" %>
+      </div>
+
+      <!-- Password -->
+      <div class="mb-4">
+        <%= f.label :password, class: "block text-sm font-medium text-gray-700 mb-1" %>
+
+        <% if @minimum_password_length %>
+          <p class="text-xs text-gray-500 mb-1">
+            (<%= @minimum_password_length %> characters minimum)
+          </p>
+        <% end %>
+
+        <%= f.password_field :password,
+              autocomplete: "new-password",
+              class: "w-full rounded-lg border border-gray-300 px-3 py-2 text-sm
+                      focus:border-red-500 focus:ring-red-500" %>
+      </div>
+
+      <!-- Password confirmation -->
+      <div class="mb-4">
+        <%= f.label :password_confirmation, class: "block text-sm font-medium text-gray-700 mb-1" %>
+        <%= f.password_field :password_confirmation,
+              autocomplete: "new-password",
+              class: "w-full rounded-lg border border-gray-300 px-3 py-2 text-sm
+                      focus:border-red-500 focus:ring-red-500" %>
+      </div>
+
+      <!-- Submit -->
+      <div class="mb-6">
+        <%= f.submit "Sign up",
+              class: "w-full rounded-lg bg-[#f5333f] px-4 py-2 text-sm font-semibold text-white
+                      hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500
+                      focus:ring-offset-2 transition" %>
+      </div>
+
+    <% end %>
+
+    <!-- Devise links -->
+    <div class="text-center text-sm text-gray-600">
+      <%= render "users/shared/links" %>
+    </div>
+
+  </div>
+</section>
