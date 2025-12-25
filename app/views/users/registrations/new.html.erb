@@ -13,11 +13,56 @@
         <%= render "users/shared/error_messages", resource: resource %>
       </div>
 
+      <!-- First Name -->
+      <div class="mb-4">
+        <%= f.label :first_name, class: "block text-sm font-medium text-gray-700 mb-1" %>
+        <%= f.text_field :first_name,
+              autocomplete: "given-name",
+              class: "w-full rounded-lg border border-gray-300 px-3 py-2 text-sm
+                      focus:border-red-500 focus:ring-red-500" %>
+      </div>
+
+      <!-- Last Name -->
+      <div class="mb-4">
+        <%= f.label :last_name, class: "block text-sm font-medium text-gray-700 mb-1" %>
+        <%= f.text_field :last_name,
+              autocomplete: "family-name",
+              class: "w-full rounded-lg border border-gray-300 px-3 py-2 text-sm
+                      focus:border-red-500 focus:ring-red-500" %>
+      </div>
+
       <!-- Email -->
       <div class="mb-4">
         <%= f.label :email, class: "block text-sm font-medium text-gray-700 mb-1" %>
         <%= f.email_field :email,
               autocomplete: "email",
+              class: "w-full rounded-lg border border-gray-300 px-3 py-2 text-sm
+                      focus:border-red-500 focus:ring-red-500" %>
+      </div>
+
+      <!-- Phone -->
+      <div class="mb-4">
+        <%= f.label :phone, class: "block text-sm font-medium text-gray-700 mb-1" %>
+        <%= f.telephone_field :phone,
+              autocomplete: "tel",
+              class: "w-full rounded-lg border border-gray-300 px-3 py-2 text-sm
+                      focus:border-red-500 focus:ring-red-500" %>
+      </div>
+
+      <!-- Membership Number -->
+      <div class="mb-4">
+        <%= f.label :membership_id, class: "block text-sm font-medium text-gray-700 mb-1" %>
+        <%= f.text_field :membership_id,
+              autocomplete: "off",
+              class: "w-full rounded-lg border border-gray-300 px-3 py-2 text-sm
+                      focus:border-red-500 focus:ring-red-500" %>
+      </div>
+
+      <!-- Role -->
+      <div class="mb-4">
+        <%= f.label :role, class: "block text-sm font-medium text-gray-700 mb-1" %>
+        <%= f.select :role, User.roles.keys.map { |role| [role.humanize, role] },
+              {},
               class: "w-full rounded-lg border border-gray-300 px-3 py-2 text-sm
                       focus:border-red-500 focus:ring-red-500" %>
       </div>
