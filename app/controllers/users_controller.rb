@@ -1,5 +1,13 @@
 class UsersController < ApplicationController
-  def update_user_status
+  def update_status
     current_user.update(is_online: params[:is_online])
+  end
+
+  def update_location
+    return head :too_many_requests if current_user.updated_at > 3.seconds.ago
+
+    current_user.update(latitude: params[:latitude], longitude: params[:longitude])
+
+    head :ok
   end
 end

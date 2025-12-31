@@ -1,3 +1,7 @@
+TODO:
+
+1. when user logout toggle user availabilty
+
 # README
 
 This README would normally document whatever steps are necessary to get the
