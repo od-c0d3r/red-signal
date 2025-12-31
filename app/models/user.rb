@@ -4,4 +4,9 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  after_update_commit -> do
+    broadcast_replace_to "statistics", partial: "partials/admin/online_counter", locals: { user: self }, target: "online_counter"
+    broadcast_replace_to self, partial: "partials/user/user_status", locals: { user: self }, target: "user_now"
+  end
 end

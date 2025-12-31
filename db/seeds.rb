@@ -1,5 +1,11 @@
-User.find_or_create_by!(email: 'user@example.com') do |user|
-  user.first_name = 'User'
+User.find_or_create_by!(email: 'user1@example.com') do |user|
+  user.first_name = 'Omar'
+  user.password = 'password'
+  user.role = 0
+end
+
+User.find_or_create_by!(email: 'user2@example.com') do |user|
+  user.first_name = 'Rashad'
   user.password = 'password'
   user.role = 0
 end

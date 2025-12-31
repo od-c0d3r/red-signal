@@ -1,3 +1,13 @@
+<% console %>
+
+<%= turbo_stream_from "statistics" %>
+
 <section>
 ADMIN DASHBOARD
+
+<!-- Online users counter from User.where(is_online: true).count -->
+    <div>
+        <span id="online_counter">Online counter: <%= User.where(is_online: true).count %></span>
+    </div>
+
 </section>

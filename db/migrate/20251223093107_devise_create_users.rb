@@ -9,6 +9,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[8.0]
       t.string :membership_id
       t.integer :role, default: 0, null: false
       t.integer :approval_status, default: 0, null: false
+      t.boolean :is_online, default: false, null: false
 
       ## Database authenticatable
       t.string :email,              null: false, default: ""
