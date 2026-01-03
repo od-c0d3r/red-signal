@@ -10,4 +10,9 @@ ADMIN DASHBOARD
         <span id="online_counter">Online counter: <%= User.where(is_online: true).count %></span>
     </div>
 
+    <div data-controller="map"
+        data-map-users-with-long-lat-value="<%= @users_with_long_lat.to_json %>"
+        style="height: 500px;">
+    </div>
+
 </section>

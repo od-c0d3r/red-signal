@@ -1,0 +1,78 @@
+import { Controller } from "@hotwired/stimulus"
+import * as L from "leaflet"
+
+// Connects to data-controller="map"
+export default class extends Controller {
+  static values = {
+    usersWithLongLat: Array,
+    lat: { type: Number, default: 31.199755},
+    lng: { type: Number, default: 29.932531},
+    zoom: { type: Number, default: 7}
+  }
+
+  connect() {
+    console.log("Map controller connected")
+
+    this.map = L.map(this.element).setView([this.latValue, this.lngValue], this.zoomValue)
+
+    // Add custom fullscreen control
+    const fullscreenControl = L.control({ position: "topright" })
+    fullscreenControl.onAdd = (map) => {
+      const div = L.DomUtil.create("div", "leaflet-bar leaflet-control")
+
+      const link = L.DomUtil.create("a", "leaflet-control-fullscreen-button", div)
+      link.href = "#"
+      link.title = "Toggle fullscreen"
+      link.innerHTML = "⛶"
+      link.style.fontSize = "18px"
+
+
+      L.DomEvent.on(link, "click", (e) => {
+        L.DomEvent.preventDefault(e)
+        if (!document.fullscreenElement) {
+          this.element.requestFullscreen().catch(err => console.error(err))
+        } else {
+          document.exitFullscreen()
+        }
+      })
+
+      return div
+    }
+    fullscreenControl.addTo(this.map)
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(this.map)
+
+              // <circle fill="#DD2E44" cx="10" cy="10" r="10"></circle>
+    const svgIcon = L.divIcon({
+      className: "custom-pin",
+      html: `
+        <svg fill="#e74c3c" height="200%" viewBox="-69 0 117 256">
+          <path filter="url(#shadow)" d="M-10.9,4.9c11.3,0,20.5,9.2,20.5,20.5S0.4,45.9-10.9,45.9s-20.5-9.2-20.5-20.5S-22.2,4.9-10.9,4.9z M14.9,51.2h-51.2
+	        c-14.2,0-25.6,11.4-25.6,25.6v62.6c0,4.9,3.9,9,9,9s9-3.9,9-9V81.9c0-1.4,1.2-2.6,2.6-2.6s2.6,1.2,2.6,2.6v155.2
+	        c0,7.7,5.7,14,12.8,14s12.8-6.3,12.8-14v-88.5c0-1.4,1.2-2.6,2.6-2.6c1.4,0,2.6,1.2,2.6,2.6v88.5c0,7.7,5.7,14,12.8,14
+	        c7.1,0,12.8-6.3,12.8-14V81.9c0-1.4,1.2-2.6,2.6-2.6s2.6,1.2,2.6,2.6v57.6c0,4.9,3.9,9,9,9s9-3.9,9-9V76.8
+	        C40.5,62.6,28.8,51.2,14.9,51.2z"/>
+        </svg>
+      `
+    });
+
+    if (this.usersWithLongLatValue.length > 0) {
+      this.usersWithLongLatValue.forEach(user => {
+        const userMarker = L.marker([user.latitude, user.longitude], { icon: svgIcon }).addTo(this.map).bindPopup(`User ID: ${user.id}`)
+      })
+    };
+  }
+
+  updateLocation(lat, lng) {
+    this.marker.setLatLng([lat, lng])
+    this.map.panTo([lat, lng])
+  }
+
+  disconnect() {
+    if (this.map) {
+      this.map.remove()
+    }
+  }
+}

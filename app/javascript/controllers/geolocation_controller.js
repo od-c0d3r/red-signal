@@ -16,6 +16,14 @@ export default class extends Controller {
           const now = Date.now();
           if (now - lastSentAt < THROTTLE_MS) return;
 
+            const accuracy = position.coords.accuracy; // in meters
+
+          // Only send if accuracy is good enough (under 50 meters)
+          // if (accuracy > 50) {
+          //   console.log(`Poor accuracy: ${accuracy}m - skipping update`);
+          //   return;
+          // }
+
           lastSentAt = now;
           const latitude = position.coords.latitude
           const longitude = position.coords.longitude
@@ -35,7 +43,13 @@ export default class extends Controller {
               console.error("Error updating location")
             }
           })
-        })
+        }, (error) => {
+          console.error("Error obtaining location: ", error)
+        }, {
+          enableHighAccuracy: true,
+          maximumAge: 0,
+          timeout: 10000
+        });
       } else {
         console.error("Geolocation is not supported by this browser.")
       }

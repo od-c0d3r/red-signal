@@ -7,7 +7,11 @@ class StaticPagesController < ApplicationController
 
   def user; end
 
-  def admin; end
+  def admin
+    @users_with_long_lat = User.where.not(latitude: nil, longitude: nil)
+
+    Rails.logger.info "Users with long/lat: #{@users_with_long_lat.pluck(:id, :latitude, :longitude).to_json}"
+  end
 
   private
 
