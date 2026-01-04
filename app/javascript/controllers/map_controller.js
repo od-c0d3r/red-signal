@@ -29,7 +29,11 @@ export default class extends Controller {
     });
 
     this.map.on("click", (e) => {
-      window.location.replace(`/events/new?lat=${e.latlng.lat}&lng=${e.latlng.lng}`);
+      if (confirm('Add event at this location?')) {
+        window.location.replace(`/events/new?lat=${e.latlng.lat}&lng=${e.latlng.lng}`);
+      } else {
+        return
+      }
     })
 
     // Add custom fullscreen control
@@ -61,11 +65,10 @@ export default class extends Controller {
       attribution: '© OpenStreetMap contributors'
     }).addTo(this.map)
 
-              // <circle fill="#DD2E44" cx="10" cy="10" r="10"></circle>
     const svgIcon = L.divIcon({
       className: "custom-pin",
       html: `
-        <svg fill="#e74c3c" height="200%" viewBox="-69 0 117 256">
+        <svg fill="#e74c3c" height="300%" viewBox="-69 0 117 256">
           <path filter="url(#shadow)" d="M-10.9,4.9c11.3,0,20.5,9.2,20.5,20.5S0.4,45.9-10.9,45.9s-20.5-9.2-20.5-20.5S-22.2,4.9-10.9,4.9z M14.9,51.2h-51.2
 	        c-14.2,0-25.6,11.4-25.6,25.6v62.6c0,4.9,3.9,9,9,9s9-3.9,9-9V81.9c0-1.4,1.2-2.6,2.6-2.6s2.6,1.2,2.6,2.6v155.2
 	        c0,7.7,5.7,14,12.8,14s12.8-6.3,12.8-14v-88.5c0-1.4,1.2-2.6,2.6-2.6c1.4,0,2.6,1.2,2.6,2.6v88.5c0,7.7,5.7,14,12.8,14
@@ -91,8 +94,6 @@ export default class extends Controller {
     };
 
     this.eventsValue.forEach(event => {
-      console.log(event);
-
       const eventMarker = L.marker([event[1], event[0]], { icon: svgEventIcon }).addTo(this.map).bindPopup(`Event ID: ${event[2]}`)
     })
   }

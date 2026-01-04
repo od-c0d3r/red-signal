@@ -8,6 +8,7 @@ User.find_or_create_by!(email: 'user1@example.com') do |user|
   user.role = 0
   user.longitude = 29.94574969945051
   user.latitude = 31.21465065136636
+  user.is_online = true
 end
 
 User.find_or_create_by!(email: 'user2@example.com') do |user|
@@ -16,6 +17,7 @@ User.find_or_create_by!(email: 'user2@example.com') do |user|
   user.role = 0
   user.longitude = 29.93344269821699
   user.latitude = 31.223274835326773
+  user.is_online = true
 end
 
 User.find_or_create_by!(email: 'user3@example.com') do |user|
@@ -24,6 +26,7 @@ User.find_or_create_by!(email: 'user3@example.com') do |user|
   user.role = 0
   user.longitude = 29.908811
   user.latitude = 31.2096
+  user.is_online = true
 end
 
 User.find_or_create_by!(email: 'user4@example.com') do |user|
@@ -32,6 +35,7 @@ User.find_or_create_by!(email: 'user4@example.com') do |user|
   user.role = 0
   user.longitude = 29.551928
   user.latitude = 30.902412
+  user.is_online = true
 end
 
 User.find_or_create_by!(email: 'admin@example.com') do |user|
