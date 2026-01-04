@@ -2,6 +2,13 @@
 
 class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
+  before_action :switch_to_offline, only: :destroy
+
+  private
+
+  def switch_to_offline
+    current_user.update(is_online: false) if current_user.user? && current_user.is_online
+  end
 
   # GET /resource/sign_in
   # def new
