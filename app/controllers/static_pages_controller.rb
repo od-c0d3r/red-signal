@@ -8,9 +8,7 @@ class StaticPagesController < ApplicationController
   def user; end
 
   def admin
-    @users_with_long_lat = User.where.not(latitude: nil, longitude: nil)
-
-    Rails.logger.info "Users with long/lat: #{@users_with_long_lat.pluck(:id, :latitude, :longitude).to_json}"
+    @online_users_with_long_lat = User.where(is_online: true).where.not(latitude: nil, longitude: nil)
   end
 
   private

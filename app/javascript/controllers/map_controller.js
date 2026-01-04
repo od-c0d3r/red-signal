@@ -5,15 +5,27 @@ import * as L from "leaflet"
 export default class extends Controller {
   static values = {
     usersWithLongLat: Array,
-    lat: { type: Number, default: 31.199755},
-    lng: { type: Number, default: 29.932531},
-    zoom: { type: Number, default: 7}
+    lat: { type: Number, default: Number(sessionStorage.getItem("mapLat")) || 31.199755},
+    lng: { type: Number, default: Number(sessionStorage.getItem("mapLng")) || 29.955631},
+    zoom: { type: Number, default: Number(sessionStorage.getItem("mapZoom")) || 7 }
   }
 
   connect() {
     console.log("Map controller connected")
 
     this.map = L.map(this.element).setView([this.latValue, this.lngValue], this.zoomValue)
+
+    this.map.on("zoomend", () => {
+      sessionStorage.setItem("mapZoom", this.map.getZoom());
+    });
+
+    this.map.on("moveend", () => {
+        const center = this.map.getCenter();
+
+        sessionStorage.setItem("mapLat", center.lat);
+        sessionStorage.setItem("mapLng", center.lng);
+        sessionStorage.setItem("mapZoom", this.map.getZoom());
+    });
 
     // Add custom fullscreen control
     const fullscreenControl = L.control({ position: "topright" })

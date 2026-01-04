@@ -6,7 +6,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   after_update_commit -> do
-    broadcast_replace_to "statistics", partial: "partials/admin/online_counter", locals: { user: self }, target: "online_counter"
+    broadcast_replace_to "statistics", partial: "partials/admin/online_counter", target: "online_counter"
+    broadcast_replace_to "statistics", partial: "partials/admin/map", locals: { online_users_with_long_lat: User.where(is_online: true).where.not(latitude: nil, longitude: nil) }, target: "map"
     broadcast_replace_to self, partial: "partials/user/user_status", locals: { user: self }, target: "user_now"
   end
 end
