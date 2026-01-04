@@ -1,0 +1,32 @@
+<section class="bg-amber-300">
+        <%= form_with model: @event, data: {turbo: false} do |f| %>
+    <%= @event.errors.full_messages unless @event.errors.empty? %>
+
+    <div>
+        <%= f.label :title %><br />
+        <%= f.text_field :title, value: "Event #{Time.now.strftime('%Y-%m-%d')} #{Time.now.strftime('%H:%M:%S')}", class: "bg-white rounded" %>
+    </div>
+
+    <div>
+        <%= f.label :briefing %><br />
+        <%= f.text_area :briefing, rows: 4, value:"Write down informaiton about the event.", class: "bg-white rounded" %>
+    </div>
+
+    <div>
+        <%= f.label :longitude %><br />
+        <%= f.number_field :longitude, value: "#{params[:lng]}", class: "bg-white rounded" %>
+    </div>
+
+    <div>
+        <%= f.label :latitude %><br />
+        <%= f.number_field :latitude, value: "#{params[:lat]}", class: "bg-white rounded"%>
+    </div>
+
+    <div class="actions">
+        <%= f.submit "Create Event" %>
+    </div>
+    <% end %>
+
+    <% console %>
+
+</section>

@@ -8,13 +8,17 @@ ADMIN DASHBOARD
         <span id="online_counter">Online counter: <%= User.where(is_online: true).count %></span>
     </div>
 
-    <div class="w-full h-[500px] outline-1">
+    <div class="w-full outline-1">
         <div
             id="map"
             data-controller="map"
-            data-map-users-with-long-lat-value="<%= @online_users_with_long_lat.to_json %>"
-            style="height: 500px;">
+            data-map-users-with-long-lat-value="<%= @online_users_with_long_lat %>"
+            data-map-events-value="<%= @events %>"
+            class="h-[500px] w-screen"
+        >
         </div>
     </div>
 
 </section>
+
+<% console %>

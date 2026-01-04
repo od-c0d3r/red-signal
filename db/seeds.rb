@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+puts "Database: Seeding."
+
 User.find_or_create_by!(email: 'user1@example.com') do |user|
   user.first_name = 'Omar'
   user.password = 'password'
@@ -38,4 +42,11 @@ User.find_or_create_by!(email: 'admin@example.com') do |user|
   user.latitude = 31.258994
 end
 
-puts "Users seeded."
+Event.find_or_create_by! title: 'Event 1' do |event|
+  event.longitude = 29.921429
+  event.latitude = 31.190079
+  event.briefing = 'Event 1 briefing'
+  event.title = 'Event 1'
+end
+
+puts "Database: Seeded."

@@ -4,6 +4,7 @@ import * as L from "leaflet"
 // Connects to data-controller="map"
 export default class extends Controller {
   static values = {
+    events: Array,
     usersWithLongLat: Array,
     lat: { type: Number, default: Number(sessionStorage.getItem("mapLat")) || 31.199755},
     lng: { type: Number, default: Number(sessionStorage.getItem("mapLng")) || 29.955631},
@@ -26,6 +27,10 @@ export default class extends Controller {
         sessionStorage.setItem("mapLng", center.lng);
         sessionStorage.setItem("mapZoom", this.map.getZoom());
     });
+
+    this.map.on("click", (e) => {
+      window.location.replace(`/events/new?lat=${e.latlng.lat}&lng=${e.latlng.lng}`);
+    })
 
     // Add custom fullscreen control
     const fullscreenControl = L.control({ position: "topright" })
@@ -70,11 +75,26 @@ export default class extends Controller {
       `
     });
 
+    const svgEventIcon = L.divIcon({
+      className: "custom-pin",
+      html: `
+        <svg fill="#e74c3c">
+          <circle fill="#DD2E44" cx="10" cy="10" r="10"></circle>
+        </svg>
+      `
+    });
+
     if (this.usersWithLongLatValue.length > 0) {
       this.usersWithLongLatValue.forEach(user => {
         const userMarker = L.marker([user.latitude, user.longitude], { icon: svgIcon }).addTo(this.map).bindPopup(`User ID: ${user.id}`)
       })
     };
+
+    this.eventsValue.forEach(event => {
+      console.log(event);
+
+      const eventMarker = L.marker([event[1], event[0]], { icon: svgEventIcon }).addTo(this.map).bindPopup(`Event ID: ${event[2]}`)
+    })
   }
 
   updateLocation(lat, lng) {
