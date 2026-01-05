@@ -29,6 +29,10 @@ export default class extends Controller {
     });
 
     this.map.on("click", (e) => {
+      if (e.originalEvent.target.id === "fullscreen-button") {
+        return
+      }
+
       if (confirm('Add event at this location?')) {
         window.location.replace(`/events/new?lat=${e.latlng.lat}&lng=${e.latlng.lng}`);
       } else {
@@ -42,6 +46,7 @@ export default class extends Controller {
       const div = L.DomUtil.create("div", "leaflet-bar leaflet-control")
 
       const link = L.DomUtil.create("a", "leaflet-control-fullscreen-button", div)
+      link.id = "fullscreen-button"
       link.href = "#"
       link.title = "Toggle fullscreen"
       link.innerHTML = "⛶"

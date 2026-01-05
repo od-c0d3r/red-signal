@@ -20,6 +20,15 @@ User.find_or_create_by!(email: 'user2@example.com') do |user|
   user.is_online = true
 end
 
+User.find_or_create_by!(email: 'user5@example.com') do |user|
+  user.first_name = 'Fatima'
+  user.password = 'password'
+  user.role = 0
+  user.longitude = 29.923496246337894
+  user.latitude = 31.198119005254362
+  user.is_online = true
+end
+
 User.find_or_create_by!(email: 'user3@example.com') do |user|
   user.first_name = 'John'
   user.password = 'password'
