@@ -1,10 +1,12 @@
 <%= turbo_stream_from current_user if current_user %>
 
-<header class="p-4 flex justify-between items-center text-white">
-    <h1 class="text-3xl font-bold">RedSignal</h1>
+<header class="p-4 flex justify-between items-center text-white h-[100px]">
     <% if current_user %>
         <% if current_user.user? %>
-            <span id="user_now" class="text-xs"><%= "You Are, #{current_user.is_online ? "Online" : "Offline"}" if current_user.user? %></span>
+            <%= link_to "RedSignal", user_path,class:"text-3xl font-bold"%>
+            <span id="user_now" class="text-xs"><%= "You Are, #{current_user.is_online ? "Online" : "Offline"}" %></span>
+        <% else %>
+            <%= link_to "RedSignal", admin_path,class:"text-3xl font-bold"%>
         <% end %>
         <div class="flex flex-col items-end">
             <span class="font-bold"><%= "Hello, #{current_user.first_name}" %></span>

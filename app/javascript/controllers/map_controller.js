@@ -64,6 +64,7 @@ export default class extends Controller {
 
       return div
     }
+
     fullscreenControl.addTo(this.map)
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {

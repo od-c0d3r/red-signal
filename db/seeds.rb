@@ -3,6 +3,7 @@
 puts "Database: Seeding."
 
 User.find_or_create_by!(email: 'user1@example.com') do |user|
+  user.approval_status = :approved
   user.first_name = 'Omar'
   user.password = 'password'
   user.role = 0
@@ -12,6 +13,7 @@ User.find_or_create_by!(email: 'user1@example.com') do |user|
 end
 
 User.find_or_create_by!(email: 'user2@example.com') do |user|
+  user.approval_status = :approved
   user.first_name = 'Rashad'
   user.password = 'password'
   user.role = 0
@@ -21,6 +23,7 @@ User.find_or_create_by!(email: 'user2@example.com') do |user|
 end
 
 User.find_or_create_by!(email: 'user5@example.com') do |user|
+  user.approval_status = :approved
   user.first_name = 'Fatima'
   user.password = 'password'
   user.role = 0
@@ -30,6 +33,7 @@ User.find_or_create_by!(email: 'user5@example.com') do |user|
 end
 
 User.find_or_create_by!(email: 'user3@example.com') do |user|
+  user.approval_status = :approved
   user.first_name = 'John'
   user.password = 'password'
   user.role = 0
@@ -39,6 +43,7 @@ User.find_or_create_by!(email: 'user3@example.com') do |user|
 end
 
 User.find_or_create_by!(email: 'user4@example.com') do |user|
+  user.approval_status = :approved
   user.first_name = 'Jane'
   user.password = 'password'
   user.role = 0
@@ -48,6 +53,7 @@ User.find_or_create_by!(email: 'user4@example.com') do |user|
 end
 
 User.find_or_create_by!(email: 'admin@example.com') do |user|
+  user.approval_status = :approved
   user.first_name = 'Admin'
   user.password = 'password'
   user.role = 1

@@ -1,24 +1,30 @@
 <%= turbo_stream_from "statistics" %>
 
-<section>
-ADMIN DASHBOARD
-
-<!-- Online users counter from User.where(is_online: true).count -->
-    <div>
-        <span id="online_counter">Online counter: <%= User.where(is_online: true).count %></span>
+<section class="h-[calc(100vh-300px)] p-10 pb-20 flex-col content-center">
+    <div class="flex flex-wrap justify-around gap-10 mb-10">
+        <% # TODO refactor to reuseable partials %>
+        <div id="online_counter" class="h-[200px] px-6 flex-1 flex-col content-center text-center text-3xl font-bold border-3 border-white rounded-2xl">
+            <div class="text-white text-5xl">Online</div>
+            <div class="text-[100px] text-white font-bold"><%= User.online.count %></div>
+        </div>
+        <div class="h-[200px] px-6 flex-1 flex-col content-center text-center text-3xl font-bold border-3 border-white rounded-2xl">
+            <div class="text-white text-5xl">Registered</div>
+            <div class="text-[100px] text-white font-bold"><%= User.user.count %></div>
+        </div>
+        <div class="h-[200px] px-6 flex-1  flex-col content-center text-center text-3xl font-bold border-3 border-white rounded-2xl">
+            <div class="text-white text-5xl">Pending</div>
+            <div class="text-[100px] text-white font-bold"><%= User.user.pending.count %></div>
+        </div>
     </div>
-
-    <div class="w-full outline-1">
+    <div class="w-full h-full">
         <div
             id="map"
             data-controller="map"
+            class="h-full"
             data-map-users-with-long-lat-value="<%= @online_users_with_long_lat %>"
             data-map-events-value="<%= @events %>"
-            class="h-[500px] w-screen"
         >
         </div>
     </div>
-
 </section>
 
-<% console %>

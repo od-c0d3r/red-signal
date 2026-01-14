@@ -15,10 +15,10 @@ class StaticPagesController < ApplicationController
   private
 
   def verify_admin
-    redirect_to admin_dashboard_path format: :html unless current_user.admin?
+    redirect_to root_path, notice: "You are not Authorized", format: :html unless current_user.admin?
   end
 
   def verify_user
-    redirect_to user_dashboard_path format: :html unless current_user.user?
+    redirect_to root_path, notice: "You need to be a User", format: :html unless current_user.user?
   end
 end

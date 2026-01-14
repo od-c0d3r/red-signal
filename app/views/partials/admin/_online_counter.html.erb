@@ -1,1 +1,4 @@
-<span id="online_counter">Online counter: <%= User.where(is_online: true).count %></span>
+<div id="online_counter" class="w-fit h-[200px] px-6 flex-col content-center text-center text-3xl font-bold border-3 border-white rounded-2xl">
+    <div class="text-white text-5xl">Online</div>
+    <div class="text-[100px] text-white font-bold"><%= User.online.count %></div>
+</div>
