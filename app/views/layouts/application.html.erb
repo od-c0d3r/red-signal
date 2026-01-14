@@ -25,10 +25,10 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="bg-[#f5333f]">
+  <body class="bg-[#f5333f] h-screen">
     <%= render "partials/flash_messages" %>
     <%= render "partials/header"%>
-    <main>
+    <main class="h-[calc(100vh-100px)] flex justify-center items-center">
       <%= yield %>
     </main>
   </body>
