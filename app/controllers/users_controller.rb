@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def update_status
-    current_user.update(is_online: params[:is_online])
+    current_user.update(is_online: !current_user.is_online)
   end
 
   def update_location

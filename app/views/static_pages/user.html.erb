@@ -1,16 +1,16 @@
-<section>
+<%= turbo_stream_from current_user if current_user %>
+<section class="bg-red-300">
   <%= form_with url: update_status_path do |f| %>
-    <div class="field">
-      <%= f.label :is_online, "Go Online" %>
-      <%= f.check_box :is_online, checked: current_user.is_online,
-                                  data: {
-                                    controller: "geolocation",
-                                    action: "click->geolocation#sendLocation"
-                                  } %>
-    </div>
-
     <div class="actions">
-      <%= f.submit "Update Status", class: "bg-red-200 px-4 py-2 rounded text-xl font-bold" %>
+      <%= f.submit "Go #{current_user.is_online ? "Offline" : "Online" }",
+            id: "toggle_status_button",
+            class: "bg-white px-4 py-2 rounded text-[#f5333f] text-xl font-bold",
+            data: {
+              controller: "geolocation",
+              action: "click->geolocation#sendLocation",
+              geolocation_user_status_value: current_user.is_online
+            }
+      %>
     </div>
   <% end %>
 </section>

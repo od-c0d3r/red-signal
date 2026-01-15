@@ -2,12 +2,22 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="geolocation"
 export default class extends Controller {
+  static values = {
+    userStatus: Boolean
+  }
+
   connect() {
     console.log("Geolocation controller connected")
   }
 
   sendLocation(event) {
-    if (event.target.checked) {
+    if (event.target.value == "Go Online") {
+      event.target.value = "Go Offline";
+    } else {
+      event.target.value = "Go Online";
+    }
+
+    if (this.userStatusValue) {
       if (navigator.geolocation) {
         let lastSentAt = 0;
         const THROTTLE_MS = ((0/*<-- seconds*/)+(60* 15/*<-- minutes*/)+(60*60* 0/*<-- hours*/)) * 1000;
