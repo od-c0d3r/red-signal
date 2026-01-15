@@ -1,7 +1,8 @@
 <%= turbo_stream_from "admin_statistics" %>
 
-<section class="h-[calc(100vh-300px)] p-10 pb-20 flex-col content-center">
-    <div class="flex flex-wrap justify-around gap-10 mb-10">
+<section class="flex-col w-full h-full p-10">
+
+    <div class="h-[40%] flex flex-wrap justify-around gap-10">
         <% # TODO refactor to reuseable partials %>
         <div id="online_counter" class="h-[200px] px-6 flex-1 flex-col content-center text-center text-3xl font-bold border-3 border-white rounded-2xl">
             <div class="text-white text-5xl">Online</div>
@@ -11,16 +12,17 @@
             <div class="text-white text-5xl">Registered</div>
             <div class="text-[100px] text-white font-bold"><%= User.user.count %></div>
         </div>
-        <div class="h-[200px] px-6 flex-1  flex-col content-center text-center text-3xl font-bold border-3 border-white rounded-2xl">
+        <div class="h-[200px] px-6 flex-1 flex-col content-center text-center text-3xl font-bold border-3 border-white rounded-2xl">
             <div class="text-white text-5xl">Pending</div>
             <div class="text-[100px] text-white font-bold"><%= User.user.pending.count %></div>
         </div>
     </div>
-    <div class="w-full h-full">
+
+    <div class="h-[60%]">
         <div
             id="map"
+            class="h-full w-full"
             data-controller="map"
-            class="h-full"
             data-map-users-with-long-lat-value="<%= @online_users_with_long_lat %>"
             data-map-events-value="<%= @events %>"
         >
