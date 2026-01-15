@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
   def update_status
-    @online_users_with_long_lat = User.online.where.not(latitude: nil, longitude: nil)
-
     current_user.update(is_online: params[:is_online])
   end
 

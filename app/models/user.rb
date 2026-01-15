@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   after_update_commit -> do
-    broadcast_replace_to "statistics", partial: "partials/admin/online_counter", target: "online_counter"
-    broadcast_replace_to "statistics", partial: "partials/admin/map",
+    broadcast_replace_to "admin_statistics", partial: "partials/admin/online_counter", target: "online_counter"
+    broadcast_replace_to "admin_statistics", partial: "partials/admin/map",
                                        locals: {
                                         online_users_with_long_lat: User.online.located,
                                         events: Event.pluck(:longitude, :latitude, :title)

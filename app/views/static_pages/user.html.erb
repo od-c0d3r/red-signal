@@ -1,21 +1,16 @@
-<% console %>
-
 <section>
-USER DASHBOARD
+  <%= form_with url: update_status_path do |f| %>
+    <div class="field">
+      <%= f.label :is_online, "Go Online" %>
+      <%= f.check_box :is_online, checked: current_user.is_online,
+                                  data: {
+                                    controller: "geolocation",
+                                    action: "click->geolocation#sendLocation"
+                                  } %>
+    </div>
 
-<%= form_with url: update_status_path do |f| %>
-  <div class="field">
-    <%= f.label :is_online, "Go Online" %>
-    <%= f.check_box :is_online, checked: current_user.is_online,
-                                data: {
-                                  controller: "geolocation",
-                                  action: "click->geolocation#sendLocation"
-                                } %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update Status", class: "bg-red-200 px-4 py-2 rounded text-xl font-bold" %>
-  </div>
-<% end %>
-
+    <div class="actions">
+      <%= f.submit "Update Status", class: "bg-red-200 px-4 py-2 rounded text-xl font-bold" %>
+    </div>
+  <% end %>
 </section>
