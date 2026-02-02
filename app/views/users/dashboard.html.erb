@@ -1,6 +1,6 @@
 <%= turbo_stream_from current_user if current_user %>
 <section class="flex justify-center items-center">
-  <%= form_with url: update_status_path do |f| %>
+  <%= form_with url: users_update_status_path do |f| %>
     <div class="actions">
       <%= f.submit "Go #{current_user.is_online ? "Offline" : "Online" }",
             id: "toggle_status_button",

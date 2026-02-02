@@ -6,7 +6,7 @@ class EventsController < ApplicationController
 
     if @event.save
       respond_to do |format|
-        format.html { redirect_to admin_path, notice: "Event was successfully created." }
+        format.html { redirect_to admins_dashboard_path, notice: "Event was successfully created." }
       end
     else
       render :new, status: :unprocessable_entity

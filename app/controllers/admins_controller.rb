@@ -1,10 +1,8 @@
-class StaticPagesController < ApplicationController
+class AdminsController < ApplicationController
   before_action :authenticate_user!
-  before_action :verify_admin, only: [ :admin ]
+  before_action :verify_admin
 
-  def index; end
-
-  def admin
+  def dashboard
     @online_users_with_long_lat = User.is_user.online.located.to_json
     @events = Event.pluck(:longitude, :latitude, :title).to_json
   end
@@ -13,9 +11,5 @@ class StaticPagesController < ApplicationController
 
   def verify_admin
     redirect_to root_path, notice: "You are not Authorized", format: :html unless current_user.admin?
-  end
-
-  def verify_user
-    redirect_to root_path, notice: "You need to be a User", format: :html unless current_user.user?
   end
 end

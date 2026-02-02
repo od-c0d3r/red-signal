@@ -3,12 +3,7 @@
 <header class="h-[100px] p-4 bg-white text-[#f5333f] flex justify-between items-center shadow-md">
     <% #TODO refactor to use partials %>
     <% if current_user %>
-        <% if current_user.user? %>
-            <%= link_to "RedSignal", users_dashboard_path, class:"text-3xl font-bold" %>
-
-        <% else %>
-            <%= link_to "RedSignal", admin_path, class:"text-3xl font-bold"%>
-        <% end %>
+        <%= link_to "RedSignal", root_path, class:"text-3xl font-bold"%>
         <div class="flex flex-col items-end">
             <span class="font-bold flex justify-center items-center gap-1">
                 <span id="user_now" class="text-xs"><%= "#{current_user.is_online ? "🟢" : "🔴"}" if current_user.user?%></span>

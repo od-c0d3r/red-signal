@@ -18,6 +18,6 @@ class UsersController < ApplicationController
 
   private
   def verify_user
-    redirect_to admin_path, notice: "You need to be a User", format: :html unless current_user.user?
+    redirect_to admins_dashboard_path, notice: "You need to be a User", format: :html unless current_user.user?
   end
 end
