@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
     if resource.admin?
       admin_path format: :html
     else
-      user_path format: :html
+      users_dashboard_path format: :html
     end
   end
 

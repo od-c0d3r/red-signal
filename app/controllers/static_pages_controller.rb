@@ -1,11 +1,8 @@
 class StaticPagesController < ApplicationController
   before_action :authenticate_user!
   before_action :verify_admin, only: [ :admin ]
-  before_action :verify_user, only: [ :user ]
 
   def index; end
-
-  def user; end
 
   def admin
     @online_users_with_long_lat = User.is_user.online.located.to_json
