@@ -8,7 +8,7 @@ class StaticPagesController < ApplicationController
   def user; end
 
   def admin
-    @online_users_with_long_lat = User.where(is_online: true, role: 0).where.not(latitude: nil, longitude: nil).to_json
+    @online_users_with_long_lat = User.is_user.online.located.to_json
     @events = Event.pluck(:longitude, :latitude, :title).to_json
   end
 

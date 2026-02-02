@@ -1,13 +1,11 @@
 Rails.application.routes.draw do
+  get "up" => "rails/health#show", as: :rails_health_check
   devise_for :users, controllers: { sessions: "users/sessions" }
-
   devise_scope :user do root to: "users/sessions#new" end
 
-  get "up" => "rails/health#show", as: :rails_health_check
+  get "admin", to: "static_pages#admin"
 
   resources :events
-
-  get "admin", to: "static_pages#admin"
 
   scope "admin" do
     get "searching_nearby" => "events#searching_nearby"

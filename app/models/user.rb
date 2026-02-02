@@ -16,6 +16,7 @@ class User < ApplicationRecord
   enum :approval_status, { pending: 0, approved: 1, rejected: 2 }
 
   scope :online, -> { where(is_online: true) }
+  scope :is_user, -> { where(role: :user) }
   scope :pending, -> { where(approval_status: :pending) }
   scope :approved, -> { where(approval_status: :approved) }
   scope :located, -> { where.not(latitude: nil, longitude: nil) }
