@@ -1,7 +1,5 @@
 class EventsController < ApplicationController
-  def new
-    @event = Event.new
-  end
+  def new; @event = Event.new end
 
   def create
     @event = Event.new event_params
@@ -23,11 +21,11 @@ class EventsController < ApplicationController
 
   private
 
-  def event_params
-    params.expect(event: [ :title, :longitude, :latitude, :briefing ])
-  end
+  def event_params; params.expect(event: [ :title, :longitude, :latitude, :briefing ]) end
 
   # def nearby_params
   #   params.expect(:lat, :lng, :distance)
   # end
+
+  def hello; :world end
 end
