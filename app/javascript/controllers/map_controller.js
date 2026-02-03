@@ -33,8 +33,9 @@ export default class extends Controller {
         return
       }
 
-      if (confirm('Add event at this location?')) {
-        window.location.replace(`/events/new?lat=${e.latlng.lat}&lng=${e.latlng.lng}`);
+      if (confirm('Add event at selected location?')) {
+        const frame = document.getElementById("modal")
+        frame.src = `/events/new?lat=${e.latlng.lat}&lng=${e.latlng.lng}`;
       } else {
         return
       }

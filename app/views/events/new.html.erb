@@ -1,33 +1,36 @@
-<section class="w-full flex justify-center items-center">
-    <div class="p-10 bg-gray-200 rounded-lg shadow-md">
-        <h1 class="text-2xl font-bold mb-4">Create New Event</h1>
-        <%= form_with model: @event, class:"flex-col", data: { turbo: false } do |f| %>
-            <%= @event.errors.full_messages unless @event.errors.empty? %>
-            <div>
-                <%= f.label :title %><br />
-                <%= f.text_field :title, value: "Event #{Time.now.strftime('%Y-%m-%d')} #{Time.now.strftime('%H:%M:%S')}", class: "bg-white rounded" %>
-            </div>
+<%= turbo_frame_tag 'modal' do %>
+    <section class="fixed w-full h-full backdrop-blur-sm flex justify-center items-center z-100" data-controller="modal" data-action="click->modal#close">
+        <div class="w-[400px] p-10 bg-gray-200 rounded-lg shadow-md" data-action="click->modal#noop:stop">
+            <h1 class="text-2xl font-bold mb-4">Create New Event</h1>
+            <%= form_with model: @event, class:"flex-col", data: { turbo: false } do |f| %>
+                <%= @event.errors.full_messages unless @event.errors.empty? %>
+                <div>
+                    <%= f.label :title %><br />
+                    <%= f.text_field :title, value: "Event #{Time.now.strftime('%Y-%m-%d')} #{Time.now.strftime('%H:%M:%S')}", class: "bg-white rounded" %>
+                </div>
 
-            <div>
-                <%= f.label :briefing %><br />
-                <%= f.text_area :briefing, rows: 4, value:"Write down informaiton about the event.", class: "bg-white rounded" %>
-            </div>
+                <div>
+                    <%= f.label :briefing %><br />
+                    <%= f.text_area :briefing, rows: 4, value:"Write down informaiton about the event.", class: "bg-white rounded" %>
+                </div>
 
-            <div>
-                <%= f.label :longitude %><br />
-                <%= f.number_field :longitude, value: "#{params[:lng]}", class: "bg-white rounded" %>
-            </div>
+                <div>
+                    <%= f.label :longitude %><br />
+                    <%= f.number_field :longitude, value: "#{params[:lng]}", class: "bg-white rounded" %>
+                </div>
 
-            <div>
-                <%= f.label :latitude %><br />
-                <%= f.number_field :latitude, value: "#{params[:lat]}", class: "bg-white rounded"%>
-            </div>
+                <div>
+                    <%= f.label :latitude %><br />
+                    <%= f.number_field :latitude, value: "#{params[:lat]}", class: "bg-white rounded"%>
+                </div>
 
-            <div class="actions">
-                <%= f.submit "Create Event", class: "bg-white px-4 py-2 rounded text-[#f5333f] text-xl font-bold my-3" %>
-            </div>
-        <% end %>
-    </div>
-
-</section>
-
+                <div class="actions flex justify-between">
+                    <%= f.submit "Create Event", class: "bg-white px-4 py-2 rounded text-[#f5333f] text-xl font-bold my-3" %>
+                    <div data-action="click->modal#close" class= "bg-[#f5333f] px-4 py-2 rounded text-white text-xl font-bold my-3 cursor-pointer">
+                        Close
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </section>
+<% end %>

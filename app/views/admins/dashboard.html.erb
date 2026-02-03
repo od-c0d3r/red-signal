@@ -1,9 +1,5 @@
 <%= turbo_stream_from "admin_statistics" %>
-
-<%= turbo_frame_tag "new_event" %>
-
 <section class="flex-col w-full h-full p-10">
-
     <div class="flex flex-wrap justify-around gap-10 mb-10">
         <% # TODO refactor to reuseable partials %>
         <div id="online_counter" class="h-[200px] px-6 flex-1 flex-col content-center text-center text-3xl font-bold border-3 border-white rounded-2xl">
@@ -23,7 +19,7 @@
     <div class="h-[60%]">
         <div
             id="map"
-            class="h-full w-full"
+            class="h-full w-full z-10"
             data-controller="map"
             data-map-users-with-long-lat-value="<%= @online_users_with_long_lat %>"
             data-map-events-value="<%= @events %>"
