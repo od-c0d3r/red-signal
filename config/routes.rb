@@ -10,8 +10,8 @@ Rails.application.routes.draw do
 
   namespace "users" do
     get "dashboard"
-    post "update_status" => "users#update_status"
-    post "update_location" => "users#update_location"
+    post "update_status"
+    post "update_location"
   end
 
   resources :events
