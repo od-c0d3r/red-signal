@@ -1,28 +1,39 @@
-TODO:
+# Red Signal
 
-1. when user logout toggle user availabilty
+> Real-time emergency dispatch and coordination platform. It bridges the gap between administrative oversight and field-level response.
 
-# README
+## Features
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Phase 1:
+- Real-time Map Updates: ActionCable (WebSockets) to push GPS coordinates without refreshing.
+- Location Queries: Geocoder Gem for spatial queries.
 
-Things you may want to cover:
+### Phase 2: (_Under Development_)
 
-* Ruby version
+- Push Notification: Firebase (FCM) integration for instant alerts.
+- Reporting: ActiveStorage for handling image/file uploads in reports.
 
-* System dependencies
+## Key technologies
 
-* Configuration
+- Rails 8
+- Hotwire
 
-* Database creation
+## Getting Started
 
-* Database initialization
+To get a local copy up and running follow these simple example steps
 
-* How to run the test suite
+- From your terminal enter in sequence
+  - `git clone git@github.com:od-c0d3r/red-signal`
+  - `cd red-signal`
+  - `bin/setup`
 
-* Services (job queues, cache servers, search engines, etc.)
+## Coders
 
-* Deployment instructions
+👤 **Omar Rashad**
 
-* ...
+- GitHub: [@od-c0d3r](https://github.com/od-c0d3r)
+- LinkedIn: [@omarrashad](https://linkedin.com/in/omarrashad)
+
+## License
+
+This project is [MIT](./MIT.md) licensed.
