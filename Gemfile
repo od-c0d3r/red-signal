@@ -69,3 +69,5 @@ gem "devise", "~> 4.9"
 gem "leaflet-rails", "~> 1.9"
 
 gem "geocoder", "~> 1.8"
+
+gem "breakman", "~> 1.0"
